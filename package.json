@@ -1,0 +1,16 @@
+{
+  "name": "resultobject",
+  "version": "0.1.0",
+  "description": "Result Object with associtated promises for JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "Result",
+    "Object",
+    "Promise"
+  ],
+  "author": "Antoine Boileau",
+  "license": "ISC"
+}
