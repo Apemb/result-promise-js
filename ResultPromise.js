@@ -1,22 +1,36 @@
 const Result = require('./Result');
 
-Promise.prototype.thenForSuccess = function(callBack) {
-  return this.then((value) => {
-    if (value instanceof Result && value.isSuccess) {
-      return this.then(callBack);
-    } else {
-      return this;
-    }
-  });
-};
+class ResultPromise extends Promise {
 
-Promise.prototype.thenForFailure = function(callBack) {
-  return this.then((value) => {
-    if (value instanceof Result && value.isFailure) {
-      return this.then(callBack);
-    } else {
-      return this;
-    }
-  });
-};
+  thenForSuccess(callBack) {
+    return this.then((value) => {
+      if (value instanceof Result && value.isSuccess) {
+        return this.then(callBack);
+      } else {
+        return this;
+      }
+    });
+  }
 
+  thenForFailure(callBack) {
+    return this.then((value) => {
+      if (value instanceof Result && value.isFailure) {
+        return this.then(callBack);
+      } else {
+        return this;
+      }
+    });
+  }
+
+  static resolveAsSuccess(value) {
+    const resultValue = Result.Success(value);
+    return Promise.resolve(resultValue);
+  };
+
+  static resolveAsFailure(value) {
+    const resultValue = Result.Failure(value);
+    return Promise.resolve(resultValue);
+  };
+}
+
+module.exports = ResultPromise;
