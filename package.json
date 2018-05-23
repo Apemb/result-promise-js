@@ -1,5 +1,5 @@
 {
-  "name": "resultobject",
+  "name": "result-object",
   "version": "0.1.0",
   "description": "Result Object with associtated promises for JavaScript",
   "main": "index.js",
